@@ -10,16 +10,16 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = []
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.0",
+    "ruff>=0.17.6",
+]
+
 [tool.setuptools]
 package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
-
-[project.optional-dependencies]
-dev = [
-    "pytest>=9.0",
-    "ruff"
-]
-
-
+[tool.setuptools.package-data]
+"bizbot.localization" = ["translations/*.json"]

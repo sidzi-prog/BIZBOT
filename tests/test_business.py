@@ -3,6 +3,7 @@ import uuid
 import pytest
 
 from bizbot.business import Business
+from bizbot.exceptions.domain import InvalidBusinessNameError, InvalidBusinessTypeError
 
 
 def test_business():
@@ -20,7 +21,7 @@ def test_activate():
     assert business.is_active is True
 
 
-def test_deacrivate():
+def test_deactivate():
     business = Business("sidzi barber shop", "barber")
     business.activate()
     business.deactivate()
@@ -28,32 +29,32 @@ def test_deacrivate():
 
 
 def test_whitespace_name():
-    with pytest.raises(ValueError):
+    with pytest.raises(InvalidBusinessNameError):
         Business("   ", "barber")
 
 
 def test_int_name():
-    with pytest.raises(ValueError):
+    with pytest.raises(InvalidBusinessNameError):
         Business(123, "barber")
 
 
 def test_nothing_name():
-    with pytest.raises(ValueError):
+    with pytest.raises(InvalidBusinessNameError):
         Business("", "barber")
 
 
 def test_whitespace_business_type():
-    with pytest.raises(ValueError):
+    with pytest.raises(InvalidBusinessTypeError):
         Business("sidzi barber shop", "    ")
 
 
-def test_init_business_type():
-    with pytest.raises(ValueError):
+def test_int_business_type():
+    with pytest.raises(InvalidBusinessTypeError):
         Business("sidzi barber shop", 123)
 
 
 def test_nothing_business_type():
-    with pytest.raises(ValueError):
+    with pytest.raises(InvalidBusinessTypeError):
         Business("sidzi barber shop", "")
 
 

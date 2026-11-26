@@ -1,5 +1,7 @@
 import uuid
 
+from bizbot.exceptions.domain import InvalidUserNameError
+
 
 class User:
     def __init__(self, full_name):
@@ -8,7 +10,7 @@ class User:
             self.id = str(uuid.uuid4())
             self.is_active = True
         else:
-            raise ValueError("Your full name is not valid")
+            raise InvalidUserNameError
 
     def activate(self):
         self.is_active = True

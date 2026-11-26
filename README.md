@@ -19,20 +19,31 @@ A central design principle is separating user identity from business membership,
 
 ## Current Implementation
 
-The initial development phase includes:
+The current development phase includes:
 
 - Business domain model
 - User domain model
 - UUID-based identifiers
-- Basic input validation
+- Input validation
 - Activation state management
-- Initial automated tests using Pytest
+- Custom domain exceptions
+- Localization management
+- Persian and English localization infrastructure
+- Translation file validation and error handling
+- Automated tests using Pytest
 
 ## Technology Stack
 
+### Core
+
 - Python 3.12+
 - Setuptools
+- Python Standard Library
+
+### Development Tools
+
 - Pytest
+- Ruff
 
 ### Planned Integrations
 
@@ -49,11 +60,22 @@ BIZBOT/
 │       ├── __init__.py
 │       ├── main.py
 │       ├── business.py
-│       └── user.py
+│       ├── user.py
+│       ├── exceptions/
+│       │   ├── __init__.py
+│       │   ├── domain.py
+│       │   └── localization.py
+│       └── localization/
+│           ├── __init__.py
+│           ├── manager.py
+│           └── translations/
+│               ├── en.json
+│               └── fa.json
 ├── tests/
 │   ├── __init__.py
 │   ├── test_business.py
-│   └── test_user.py
+│   ├── test_user.py
+│   └── test_manager.py
 ├── .gitignore
 ├── pyproject.toml
 └── README.md
@@ -98,16 +120,40 @@ Run the test suite:
 python -m pytest -v
 ```
 
+### Code Quality
+
+Check code quality with Ruff:
+
+```bash
+ruff check .
+```
+
+Check formatting:
+
+```bash
+ruff format --check .
+```
+
 ## Roadmap
 
 ### Core Architecture
 
 - [x] Business domain model
 - [x] User domain model
-- [x] Initial input validation
+- [x] Input validation
 - [x] UUID-based identifiers
-- [x] Basic activation state management
-- [x] Initial Pytest coverage
+- [x] Activation state management
+- [x] Custom domain exceptions
+- [x] Initial automated test coverage
+
+### Localization and Error Handling
+
+- [x] Localization manager
+- [x] Persian and English translation files
+- [x] Supported language validation
+- [x] Translation file loading
+- [x] Translation file error handling
+- [x] Missing translation key handling
 
 ### Identity and Access Management
 
@@ -135,7 +181,9 @@ python -m pytest -v
 
 **Early Development**
 
-BizBot is under active development. The current version establishes the initial domain models and project structure. Planned features and integrations have not yet been implemented.
+BizBot is under active development. The current implementation establishes the initial domain models, custom error handling, localization infrastructure, and automated test foundation.
+
+Planned features and integrations have not yet been implemented.
 
 ## License
 

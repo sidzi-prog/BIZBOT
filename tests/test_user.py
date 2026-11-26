@@ -2,6 +2,7 @@ import uuid
 
 import pytest
 
+from bizbot.exceptions.domain import InvalidUserNameError
 from bizbot.user import User
 
 
@@ -27,15 +28,15 @@ def test_active():
 
 
 def test_whitespace():
-    with pytest.raises(ValueError):
+    with pytest.raises(InvalidUserNameError):
         User("   ")
 
 
 def test_int():
-    with pytest.raises(ValueError):
+    with pytest.raises(InvalidUserNameError):
         User(123)
 
 
 def test_nothing():
-    with pytest.raises(ValueError):
+    with pytest.raises(InvalidUserNameError):
         User("")

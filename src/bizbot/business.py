@@ -1,13 +1,15 @@
 import uuid
 
+from bizbot.exceptions.domain import InvalidBusinessNameError, InvalidBusinessTypeError
+
 
 class Business:
     def __init__(self, name, business_type):
 
         if not isinstance(name, str) or not name.strip():
-            raise ValueError("the name not valid")
+            raise InvalidBusinessNameError
         if not isinstance(business_type, str) or not business_type.strip():
-            raise ValueError("the business type is not valid")
+            raise InvalidBusinessTypeError
         self.business_type = business_type.strip()
         self.name = name.strip()
         self.id = str(uuid.uuid4())
