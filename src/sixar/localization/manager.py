@@ -1,7 +1,7 @@
 import json
 import pathlib
 
-from bizbot.exceptions.localization import (
+from sixar.exceptions.localization import (
     InvalidTranslationFileError,
     TranslationFileNotFoundError,
 )

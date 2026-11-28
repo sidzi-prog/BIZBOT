@@ -2,8 +2,8 @@ import uuid
 
 import pytest
 
-from bizbot.exceptions.domain import InvalidUserLanguageError, InvalidUserNameError
-from bizbot.user import User
+from sixar.exceptions.domain import InvalidUserLanguageError, InvalidUserNameError
+from sixar.user import User
 
 
 def test_user():

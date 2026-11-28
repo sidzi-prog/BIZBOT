@@ -3,9 +3,9 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "bizbot"
+name = "sixar"
 version = "0.1.0"
-description = "A configurable multi-business management platform"
+description = "A modular multi-tenant marketplace, business management, and customer relationship platform"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = []
@@ -22,4 +22,4 @@ package-dir = {"" = "src"}
 [tool.setuptools.packages.find]
 where = ["src"]
 [tool.setuptools.package-data]
-"bizbot.localization" = ["translations/*.json"]
+"sixar.localization" = ["translations/*.json"]

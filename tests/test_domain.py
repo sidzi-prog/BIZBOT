@@ -1,6 +1,6 @@
 import pytest
 
-from bizbot.exceptions.domain import (
+from sixar.exceptions.domain import (
     DomainError,
     InvalidBusinessNameError,
     InvalidBusinessTypeError,

@@ -1,6 +1,6 @@
 import uuid
 
-from bizbot.exceptions.domain import InvalidBusinessNameError, InvalidBusinessTypeError
+from sixar.exceptions.domain import InvalidBusinessNameError, InvalidBusinessTypeError
 
 
 class Business:

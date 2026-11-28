@@ -2,8 +2,8 @@ import uuid
 
 import pytest
 
-from bizbot.business import Business
-from bizbot.exceptions.domain import InvalidBusinessNameError, InvalidBusinessTypeError
+from sixar.business import Business
+from sixar.exceptions.domain import InvalidBusinessNameError, InvalidBusinessTypeError
 
 
 def test_business():

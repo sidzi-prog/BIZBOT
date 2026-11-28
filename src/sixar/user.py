@@ -1,6 +1,6 @@
 import uuid
 
-from bizbot.exceptions.domain import InvalidUserLanguageError, InvalidUserNameError
+from sixar.exceptions.domain import InvalidUserLanguageError, InvalidUserNameError
 
 
 class User:

@@ -1,190 +1,265 @@
-# BizBot
+# Sixar
 
-**A modular, multi-tenant business management platform built with Python.**
+**A Modular Multi-Tenant Marketplace, Business Management, and Customer Relationship Platform**
 
-## Overview
+Sixar is an open-source Python project designed to provide a shared foundation for a multi-tenant platform that connects businesses and customers through a modular architecture.
 
-BizBot is an open-source project designed to provide a shared foundation for managing multiple businesses through a modular architecture.
+Sixar combines three complementary capabilities:
 
-The platform aims to support different business types while keeping common business logic separate from business-specific functionality.
+- **Marketplace:** A shared environment where customers can discover businesses and their services.
+- **Business Management:** A modular platform that enables businesses to manage their profiles, services, and operations.
+- **Customer Relationship Management:** A centralized customer experience for managing interactions, requests, notifications, and relationships across businesses.
 
-A central design principle is separating user identity from business membership, allowing a single user to be associated with multiple businesses with different roles and permissions.
+The project is being developed with a focus on clean architecture, extensibility, maintainability, and long-term scalability.
+
+---
 
 ## Core Concepts
 
-- **Business:** Represents an individual business within the platform.
-- **User:** Represents a standalone user identity.
-- **Business Membership (Planned):** Connects users to businesses and manages their roles and access.
-- **Business Modules (Planned):** Provide functionality specific to different business types.
+### Multi-Tenancy
+
+Each business operates within its own logical environment. Business-specific data and operations are designed to remain isolated from other tenants.
+
+### Centralized User Identity
+
+A user has a platform-level identity and can interact with multiple businesses without requiring a separate platform account for each one.
+
+Business-specific roles and memberships are separate concepts from the user's global identity.
+
+### Modular Architecture
+
+Business functionality is organized into modules.
+
+Default modules are determined by the business type. Additional modules can be requested and enabled after compatibility and conflict validation.
+
+### Business Categories and Types
+
+Business categories and types are managed by the platform.
+
+- Each business type belongs to one business category.
+- Platform administrators manage the official categories and types.
+- Business owners select from the approved list.
+- Users can suggest new business types for platform review.
+- Changing an existing business's type requires a review process.
+
+### Localization
+
+Sixar is designed to support Persian and English from the beginning.
+
+- Supported languages: `fa` and `en`
+- Platform-managed interface text is localized.
+- User language preference determines the language of the interface.
+- User-generated content does not require duplicate entries in multiple languages.
+
+---
+
+## Architectural Principles
+
+The project follows these principles:
+
+- Separation of concerns
+- Domain-driven design principles
+- Explicit domain validation
+- Modular and extensible architecture
+- Clear separation between platform-level and business-level responsibilities
+- UUID-based entity identification
+- Maintainable package structure
+- Automated testing
+
+The architecture is intended to support future expansion without introducing unnecessary dependencies into the initial core.
+
+---
 
 ## Current Implementation
 
-The current development phase includes:
+The current implementation establishes the initial domain foundation.
 
-- Business domain model
-- User domain model
+Implemented components include:
+
+- `Business` domain model
+- `User` domain model
 - UUID-based identifiers
-- Input validation
+- Domain validation
 - Activation state management
 - Custom domain exceptions
-- Localization management
-- Persian and English localization infrastructure
-- Translation file validation and error handling
-- Automated tests using Pytest
+- Localization infrastructure
+- Persian and English translation files
+- Automated unit tests
+
+The localization infrastructure currently supports `fa` and `en` through JSON translation files.
+
+Missing translation keys raise `KeyError`; implicit fallback behavior is not used.
+
+<text>**Current test status:** 40 passing tests at the latest verified checkpoint.</text>
+
+---
 
 ## Technology Stack
 
-### Core
+| Technology | Purpose |
+|---|---|
+| Python 3.12+ | Core programming language |
+| pytest | Automated testing |
+| Ruff | Code quality and linting |
+| JSON | Localization resources |
+| Git | Version control |
 
-- Python 3.12+
-- Setuptools
-- Python Standard Library
-
-### Development Tools
-
-- Pytest
-- Ruff
-
-### Planned Integrations
-
-- SQLite
-- Telegram Bot API
-- Bale messaging platform
+---
 
 ## Project Structure
 
 ```text
-BIZBOT/
+SIXAR/
+│
 ├── src/
-│   └── bizbot/
+│   └── sixar/
 │       ├── __init__.py
-│       ├── main.py
 │       ├── business.py
 │       ├── user.py
+│       ├── main.py
+│       │
 │       ├── exceptions/
 │       │   ├── __init__.py
 │       │   ├── domain.py
 │       │   └── localization.py
+│       │
 │       └── localization/
 │           ├── __init__.py
 │           ├── manager.py
 │           └── translations/
 │               ├── en.json
 │               └── fa.json
+│
 ├── tests/
-│   ├── __init__.py
 │   ├── test_business.py
-│   ├── test_user.py
-│   └── test_manager.py
+│   ├── test_domain.py
+│   ├── test_manager.py
+│   └── test_user.py
+│
 ├── .gitignore
 ├── pyproject.toml
 └── README.md
 ```
 
-The project follows the `src`-based Python package layout.
+---
 
 ## Getting Started
 
 ### Requirements
 
-- Python 3.12 or later
-- pip
+- Python 3.12 or newer
+- Git
 
-### Installation
-
-Clone the repository:
+### Clone the Repository
 
 ```bash
-git clone https://github.com/sidzi-prog/BIZBOT.git
-cd BIZBOT
+git clone https://github.com/sidzi-prog/SIXAR.git
+cd SIXAR
 ```
 
-Create and activate a virtual environment:
+### Create a Virtual Environment
 
 ```bash
-python -m venv .venv
+python3 -m venv .venv
+```
+
+Activate it:
+
+**Linux / macOS**
+
+```bash
 source .venv/bin/activate
 ```
 
-Install the project with development dependencies:
+**Windows**
 
-```bash
-python -m pip install -e ".[dev]"
+```powershell
+.venv\Scripts\activate
 ```
 
-### Running Tests
-
-Run the test suite:
+### Install the Project
 
 ```bash
-python -m pytest -v
+pip install -e ".[dev]"
 ```
 
-### Code Quality
+### Run Tests
 
-Check code quality with Ruff:
+```bash
+pytest
+```
+
+### Run Ruff
 
 ```bash
 ruff check .
 ```
 
-Check formatting:
-
-```bash
-ruff format --check .
-```
+---
 
 ## Roadmap
 
-### Core Architecture
+Sixar is under active development. The roadmap is organized around establishing a reliable domain foundation before expanding into application-level functionality.
 
-- [x] Business domain model
-- [x] User domain model
-- [x] Input validation
-- [x] UUID-based identifiers
-- [x] Activation state management
-- [x] Custom domain exceptions
-- [x] Initial automated test coverage
+### Core Domain
 
-### Localization and Error Handling
-
-- [x] Localization manager
-- [x] Persian and English translation files
-- [x] Supported language validation
-- [x] Translation file loading
-- [x] Translation file error handling
-- [x] Missing translation key handling
-
-### Identity and Access Management
-
-- [ ] UserAccount and authentication management
-- [ ] UserIdentity for messaging platform integrations
-- [ ] BusinessMembership for multi-business relationships
-- [ ] Role-Based Access Control (RBAC)
-- [ ] Contact information management
+- [x] Initial Business model
+- [x] Initial User model
+- [x] Domain exception handling
+- [x] Localization infrastructure
+- [ ] BusinessCategory model
+- [ ] BusinessType model
+- [ ] BusinessTypeSuggestion model
+- [ ] Business model integration with business categories and types
 
 ### Business Management
 
-- [ ] Customer management
-- [ ] Business-specific modules
-- [ ] Request and order management
-- [ ] Administrative reporting
+- [ ] Business membership and role management
+- [ ] Business module management
+- [ ] Module compatibility validation
+- [ ] Business profile and service management
 
-### Infrastructure and Integrations
+### Marketplace
 
-- [ ] Database integration
-- [ ] SQLite support
-- [ ] Telegram integration
-- [ ] Bale integration
+- [ ] Public business discovery
+- [ ] Business search and filtering
+- [ ] Location-based business discovery
+- [ ] Direct business access links
+
+### Customer Relationships
+
+- [ ] Centralized customer interaction history
+- [ ] Customer requests
+- [ ] Notification infrastructure
+- [ ] Customer relationship features
+
+### Platform Infrastructure
+
+- [ ] Authentication and authorization
+- [ ] Persistent storage
+- [ ] API layer
+- [ ] Application interfaces
+- [ ] Payment infrastructure
+- [ ] Internationalization and regional configuration
+
+---
 
 ## Project Status
 
-**Early Development**
+Sixar is currently in its early development stage.
 
-BizBot is under active development. The current implementation establishes the initial domain models, custom error handling, localization infrastructure, and automated test foundation.
+The initial domain foundation, localization infrastructure, exception handling, and automated test foundation have been established.
 
-Planned features and integrations have not yet been implemented.
+The next development phase focuses on business categories and types, followed by their integration into the existing Business domain model.
+
+Features listed in the roadmap are planned and should not be considered implemented unless explicitly marked as completed.
+
+---
 
 ## License
 
-License information will be added in a future release.
+The project license has not yet been finalized.
+
+---
+
+**Sixar — One Platform, Multiple Businesses, Connected Customers.**

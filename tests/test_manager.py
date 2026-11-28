@@ -1,6 +1,6 @@
 import pytest
 
-from bizbot.localization import manager
+from sixar.localization import manager
 
 
 def test_manager_fa():
